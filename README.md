@@ -14,18 +14,19 @@ It appears that this is not optimal but is sufficient as a first attempt
 towards the goal of a visual prototxt builder.  
 
 ###Instructions:  
-Open simulink in Matlab by typing 'simulink' at the prompt.  
-Then use File\Open to open the CaffeLibrary.mdl file.  
-This will bring up the different layers and input types in the CaffeLibrary.  
-Create a new model by going to File\New.  
-In the new model you will need to change the simulation parameters by going to
+* Open simulink in Matlab by typing 'simulink' at the prompt.  
+* Use File\Open to open the CaffeLibrary.mdl file.  
+* This will bring up the different layers and input types in the CaffeLibrary.  
+* Create a new model by going to File\New.  
+* In the new model you will need to change the simulation parameters by going to
 Simulation\ConfigurationParameters.   
-Change Stop Time to 1. Change Solver Options:Type to Fixed-step. Change Solver to discrete.
+* Change Stop Time to 1. Change Solver Options:Type to Fixed-step. Change Solver to discrete.
 Press apply.  
-You can now drag and drop items from the CaffeLibrary into your new model and connect
+* Now drag and drop items from the CaffeLibrary into your new model and connect
 them up in the shape of a network architecture.  
-Once you have connected everything you can press the simulate button. If everything
-works you will see multiple txt files. Currently you need to run the script 
+* Once you have connected everything you can press the simulate button.   
+
+If everything works you will see multiple txt files. Currently you need to run the script 
 collateFiles.m in matlab and it will collect all the txt files and append
 them into one prototxt file. In the future this will happen automatically.  
 
