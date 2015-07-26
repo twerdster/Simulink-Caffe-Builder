@@ -19,7 +19,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [467.0, 93.0, 1871.0, 1092.0]
+      Location		      [59.0, 56.0, 336.0, 540.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -43,9 +43,9 @@ Library {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[1819.0, 915.0]
+	Extents			[286.0, 392.0]
 	ZoomFactor		[0.8]
-	Offset			[-44.876501035196782, -25.23587474461857]
+	Offset			[-44.876501035196725, -25.235874744618513]
       }
     }
   }
@@ -55,9 +55,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "gipadmin"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sun Jul 12 02:39:10 2015"
-  RTWModifiedTimeStamp	  358569547
-  ModelVersionFormat	  "1.%<AutoIncrement:72>"
+  LastModifiedDate	  "Sat Jul 25 01:40:33 2015"
+  RTWModifiedTimeStamp	  359689231
+  ModelVersionFormat	  "1.%<AutoIncrement:166>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -812,7 +812,7 @@ Library {
   }
   System {
     Name		    "CaffeLibrary"
-    Location		    [467, 93, 2338, 1185]
+    Location		    [59, 56, 395, 596]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -831,8 +831,8 @@ Library {
       BlockType		      SubSystem
       Name		      "ConvLayer"
       SID		      "7"
-      Ports		      [1, 1]
-      Position		      [20, 177, 125, 223]
+      Ports		      [7, 1]
+      Position		      [20, 217, 125, 303]
       ZOrder		      -4
       BackgroundColor	      "orange"
       DropShadow	      on
@@ -1016,13 +1016,67 @@ Library {
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"100"
-	SIDHighWatermark	"48"
+	SIDHighWatermark	"69"
 	Block {
 	  BlockType		  Inport
 	  Name			  "bottom"
 	  SID			  "7::18"
 	  Position		  [20, 101, 40, 119]
 	  ZOrder		  -2
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "c_f_value_b"
+	  SID			  "7::64"
+	  Position		  [20, 136, 40, 154]
+	  ZOrder		  19
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "c_f_min_b"
+	  SID			  "7::65"
+	  Position		  [20, 171, 40, 189]
+	  ZOrder		  20
+	  Port			  "3"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "c_f_max_b"
+	  SID			  "7::66"
+	  Position		  [20, 206, 40, 224]
+	  ZOrder		  21
+	  Port			  "4"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "c_f_mean_b"
+	  SID			  "7::67"
+	  Position		  [20, 246, 40, 264]
+	  ZOrder		  22
+	  Port			  "5"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "c_f_std_b"
+	  SID			  "7::68"
+	  Position		  [20, 281, 40, 299]
+	  ZOrder		  23
+	  Port			  "6"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "c_f_variance_norm_b"
+	  SID			  "7::69"
+	  Position		  [20, 316, 40, 334]
+	  ZOrder		  24
+	  Port			  "7"
 	  IconDisplay		  "Port number"
 	}
 	Block {
@@ -1039,16 +1093,18 @@ Library {
 	  Name			  " SFunction "
 	  SID			  "7::36"
 	  Tag			  "Stateflow S-Function CaffeLibrary 3"
-	  Ports			  [1, 2]
-	  Position		  [180, 130, 230, 190]
+	  Ports			  [7, 2]
+	  Position		  [180, 160, 230, 320]
 	  ZOrder		  1
 	  FunctionName		  "sf_sfun"
-	  Parameters		  "biasFill,biasVal,kernelSize,numFilters,stride,title,weightFill,weightStd"
-	  PortCounts		  "[1 2]"
+	  Parameters		  "c_bias_term_,c_f_max_w,c_f_mean_w,c_f_min_w,c_f_std_w,c_f_type_b,c_f_type_w,c_f_value_w,c_f_variance"
+	  "_norm_w,c_group_,c_kernel_h_,c_kernel_w_,c_num_output_,c_stride_h_,c_stride_w_,loss_weight,misc_,name_,p_decay_b,p_"
+	  "decay_w,p_lr_b,p_lr_w"
+	  PortCounts		  "[7 2]"
 	  EnableBusSupport	  off
 	  Port {
 	    PortNumber		    2
-	    Name		    "out"
+	    Name		    "top"
 	    RTWStorageClass	    "Auto"
 	    DataLoggingNameMode	    "SignalName"
 	  }
@@ -1062,37 +1118,79 @@ Library {
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "out"
+	  Name			  "top"
 	  SID			  "7::5"
 	  Position		  [460, 101, 480, 119]
 	  ZOrder		  -13
 	  IconDisplay		  "Port number"
 	}
 	Line {
-	  ZOrder		  273
+	  ZOrder		  676
 	  SrcBlock		  "bottom"
 	  SrcPort		  1
 	  DstBlock		  " SFunction "
 	  DstPort		  1
 	}
 	Line {
-	  Name			  "out"
-	  ZOrder		  274
+	  ZOrder		  677
+	  SrcBlock		  "c_f_value_b"
+	  SrcPort		  1
+	  DstBlock		  " SFunction "
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  678
+	  SrcBlock		  "c_f_min_b"
+	  SrcPort		  1
+	  DstBlock		  " SFunction "
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  679
+	  SrcBlock		  "c_f_max_b"
+	  SrcPort		  1
+	  DstBlock		  " SFunction "
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  680
+	  SrcBlock		  "c_f_mean_b"
+	  SrcPort		  1
+	  DstBlock		  " SFunction "
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  681
+	  SrcBlock		  "c_f_std_b"
+	  SrcPort		  1
+	  DstBlock		  " SFunction "
+	  DstPort		  6
+	}
+	Line {
+	  ZOrder		  682
+	  SrcBlock		  "c_f_variance_norm_b"
+	  SrcPort		  1
+	  DstBlock		  " SFunction "
+	  DstPort		  7
+	}
+	Line {
+	  Name			  "top"
+	  ZOrder		  683
 	  Labels		  [0, 0]
 	  SrcBlock		  " SFunction "
 	  SrcPort		  2
-	  DstBlock		  "out"
+	  DstBlock		  "top"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  275
+	  ZOrder		  684
 	  SrcBlock		  " Demux "
 	  SrcPort		  1
 	  DstBlock		  " Terminator "
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  276
+	  ZOrder		  685
 	  SrcBlock		  " SFunction "
 	  SrcPort		  1
 	  DstBlock		  " Demux "
@@ -1197,7 +1295,7 @@ Library {
 	  EnableBusSupport	  off
 	  Port {
 	    PortNumber		    2
-	    Name		    "out"
+	    Name		    "top"
 	    RTWStorageClass	    "Auto"
 	    DataLoggingNameMode	    "SignalName"
 	  }
@@ -1211,19 +1309,19 @@ Library {
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "out"
+	  Name			  "top"
 	  SID			  "1::5"
 	  Position		  [460, 101, 480, 119]
 	  ZOrder		  -7
 	  IconDisplay		  "Port number"
 	}
 	Line {
-	  Name			  "out"
+	  Name			  "top"
 	  ZOrder		  50
 	  Labels		  [0, 0]
 	  SrcBlock		  " SFunction "
 	  SrcPort		  2
-	  DstBlock		  "out"
+	  DstBlock		  "top"
 	  DstPort		  1
 	}
 	Line {
@@ -1334,7 +1432,7 @@ Library {
 	  EnableBusSupport	  off
 	  Port {
 	    PortNumber		    2
-	    Name		    "out"
+	    Name		    "top"
 	    RTWStorageClass	    "Auto"
 	    DataLoggingNameMode	    "SignalName"
 	  }
@@ -1348,7 +1446,7 @@ Library {
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "out"
+	  Name			  "top"
 	  SID			  "6::5"
 	  Position		  [460, 101, 480, 119]
 	  ZOrder		  -7
@@ -1369,12 +1467,12 @@ Library {
 	  DstPort		  2
 	}
 	Line {
-	  Name			  "out"
+	  Name			  "top"
 	  ZOrder		  32
 	  Labels		  [0, 0]
 	  SrcBlock		  " SFunction "
 	  SrcPort		  2
-	  DstBlock		  "out"
+	  DstBlock		  "top"
 	  DstPort		  1
 	}
 	Line {
@@ -1525,7 +1623,7 @@ Library {
 	  EnableBusSupport	  off
 	  Port {
 	    PortNumber		    2
-	    Name		    "out"
+	    Name		    "top"
 	    RTWStorageClass	    "Auto"
 	    DataLoggingNameMode	    "SignalName"
 	  }
@@ -1539,7 +1637,7 @@ Library {
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "out"
+	  Name			  "top"
 	  SID			  "10::5"
 	  Position		  [460, 101, 480, 119]
 	  ZOrder		  -8
@@ -1553,12 +1651,12 @@ Library {
 	  DstPort		  1
 	}
 	Line {
-	  Name			  "out"
+	  Name			  "top"
 	  ZOrder		  52
 	  Labels		  [0, 0]
 	  SrcBlock		  " SFunction "
 	  SrcPort		  2
-	  DstBlock		  "out"
+	  DstBlock		  "top"
 	  DstPort		  1
 	}
 	Line {
@@ -1736,7 +1834,7 @@ Library {
 	  EnableBusSupport	  off
 	  Port {
 	    PortNumber		    2
-	    Name		    "out"
+	    Name		    "top"
 	    RTWStorageClass	    "Auto"
 	    DataLoggingNameMode	    "SignalName"
 	  }
@@ -1750,7 +1848,7 @@ Library {
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "out"
+	  Name			  "top"
 	  SID			  "8::5"
 	  Position		  [460, 101, 480, 119]
 	  ZOrder		  -9
@@ -1764,12 +1862,12 @@ Library {
 	  DstPort		  1
 	}
 	Line {
-	  Name			  "out"
+	  Name			  "top"
 	  ZOrder		  89
 	  Labels		  [0, 0]
 	  SrcBlock		  " SFunction "
 	  SrcPort		  2
-	  DstBlock		  "out"
+	  DstBlock		  "top"
 	  DstPort		  1
 	}
 	Line {
@@ -1876,7 +1974,7 @@ Library {
 	  EnableBusSupport	  off
 	  Port {
 	    PortNumber		    2
-	    Name		    "out"
+	    Name		    "top"
 	    RTWStorageClass	    "Auto"
 	    DataLoggingNameMode	    "SignalName"
 	  }
@@ -1890,7 +1988,7 @@ Library {
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "out"
+	  Name			  "top"
 	  SID			  "9::5"
 	  Position		  [460, 101, 480, 119]
 	  ZOrder		  -5
@@ -1904,12 +2002,12 @@ Library {
 	  DstPort		  1
 	}
 	Line {
-	  Name			  "out"
+	  Name			  "top"
 	  ZOrder		  14
 	  Labels		  [0, 0]
 	  SrcBlock		  " SFunction "
 	  SrcPort		  2
-	  DstBlock		  "out"
+	  DstBlock		  "top"
 	  DstPort		  1
 	}
 	Line {
@@ -1941,7 +2039,7 @@ Stateflow {
     name		    "CaffeLibrary"
     created		    "08-Jul-2015 19:47:27"
     isLibrary		    1
-    firstTarget		    62
+    firstTarget		    82
     sfVersion		    76014001.002
   }
   chart {
@@ -1983,11 +2081,11 @@ Stateflow {
     decomposition	    CLUSTER_STATE
     eml {
       isEML		      1
-      script		      "function out  = Euclidean(title, bottom, label)\n\ncoder.extrinsic('sprintf');\ncoder.extrinsic('"
+      script		      "function top  = Euclidean(title, bottom, label)\n\ncoder.extrinsic('sprintf');\ncoder.extrinsic('"
       "fprintf');\ncoder.extrinsic('fopen');\ncoder.extrinsic('fclose');\n\nstr = sprintf( ...\n ['\\nlayer {\\n', ...\n"
       "'  name: \"%s\"\\n', ...\n'  type: \"EuclideanLoss\"\\n', ...\n'  bottom: \"%s\"\\n', ...\n'  bottom: \"%s\"\\n'"
       ", ...\n'  top: \"loss\"\\n', ...\n'}\\n\\n'], ...\n title, bottom, label);\n\n\nf=fopen(char([title' '.txt']),'w"
-      "');\nfprintf(f,'%s',str);\nfclose(f);\n\nout = title; \n\n\n\n\n\n"
+      "');\nfprintf(f,'%s',str);\nfclose(f);\n\ntop = title; \n\n\n\n\n\n"
       editorLayout	      "100 M4x1[10 5 700 500]"
     }
   }
@@ -2013,7 +2111,7 @@ Stateflow {
   data {
     id			    5
     ssIdNumber		    5
-    name		    "out"
+    name		    "top"
     linkNode		    [2 4 6]
     scope		    OUTPUT_DATA
     machine		    1
@@ -2152,13 +2250,13 @@ Stateflow {
     decomposition	    CLUSTER_STATE
     eml {
       isEML		      1
-      script		      "function out  = HDF5(title,srcFile,batchSize) \n\ncoder.extrinsic('sprintf');\ncoder.extrinsic('f"
+      script		      "function top  = HDF5(title,srcFile,batchSize) \n\ncoder.extrinsic('sprintf');\ncoder.extrinsic('f"
       "printf');\ncoder.extrinsic('fopen');\ncoder.extrinsic('fclose');\n\ndataName = 'data';\nlabelName = 'label';\n\n"
       "str = sprintf( ...\n ['\\nlayer {\\n', ...\n ' name: \"%s\"\\n',  ...\n ' type: \"HDF5Data\"\\n', ...\n ' top: \""
       "%s\"\\n', ...\n ' top: \"%s\"\\n', ...\n ' hdf5_data_param {\\n', ...\n '   source: \"%s\"\\n', ... %examples/hd"
       "f5_classification/data/train.txt\n '   batch_size: %i\\n', ...\n ' }\\n', ...\n '}\\n\\n'], ...\n title, dataNam"
       "e, labelName, srcFile, batchSize);\n\n\nf=fopen(char([title' '.txt']),'w');\nfprintf(f,'%s',str);\nfclose(f);\n\n"
-      "out = title; \n\n\n"
+      "top = title; \n\n\n"
       editorLayout	      "100 M4x1[10 5 700 500]"
     }
   }
@@ -2208,7 +2306,7 @@ Stateflow {
   data {
     id			    15
     ssIdNumber		    5
-    name		    "out"
+    name		    "top"
     linkNode		    [11 14 16]
     scope		    OUTPUT_DATA
     machine		    1
@@ -2293,15 +2391,15 @@ Stateflow {
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1920 1080 1.25]
     treeNode		    [0 21 0 0]
-    firstTransition	    33
-    firstJunction	    32
+    firstTransition	    53
+    firstJunction	    52
     viewObj		    20
     visible		    1
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
     subviewS {
     }
-    ssIdHighWaterMark	    15
+    ssIdHighWaterMark	    36
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
     firstData		    22
@@ -2325,49 +2423,65 @@ Stateflow {
     decomposition	    CLUSTER_STATE
     eml {
       isEML		      1
-      script		      "function out  = Convolution(title, bottom, numFilters, kernelSize, stride, weightFill, weightStd,"
-      " biasFill, biasVal)\n\ncoder.extrinsic('sprintf');\ncoder.extrinsic('fprintf');\ncoder.extrinsic('fopen');\ncode"
-      "r.extrinsic('fclose');\n\n\nstr = sprintf( ...\n'\\nlayer {\\n', ...\n'  name: \"%s\"\\n', ...\n'  type: \"Convo"
-      "lution\"\\n', ...\n'  bottom: \"%s\"\\n', ...\n'  top: \"%s\"\\n', ...\n'  # learning rate and decay multipliers"
-      " for the filters\\n', ...\n'  param { lr_mult: 1 decay_mult: 1 }\\n', ...\n'  # learning rate and decay multipli"
-      "ers for the biases\\n', ...\n'  param { lr_mult: 2 decay_mult: 0 }\\n', ...\n'  convolution_param {\\n', ...\n' "
-      "   num_output: %i     # learn 96 filters\\n', ...\n'    kernel_size: %i    # each filter is 11x11\\n', ...\n'   "
-      " stride: %i         # step 4 pixels between each filter application\\n', ...\n'    weight_filler {\\n', ...\n'  "
-      "    type: \"%s\"       # initialize the filters from a Gaussian\\n', ...\n'      std: %.4f       # distribution "
-      "with stdev 0.01 (default mean: 0)\\n', ...\n'    }\\n', ...\n'    bias_filler {\\n', ...\n'      type: \"%s\" # "
-      "initialize the biases to zero (0)\\n', ...\n'      value: %.4f\\n', ...\n'    }\\n', ...\n'  }\\n', ...\n'}\\n\\"
-      "n', ...\ntitle,bottom,title, numFilters, kernelSize, stride, weightFill, weightStd, biasFill, biasVal );\n\n\nf="
-      "fopen(char([title' '.txt']),'w');\nfprintf(f,'%s',str);\nfclose(f);\n\nout = title; \n\n\n\n"
+      script		      "function top  =  Convolution(name_, bottom,loss_weight, misc_, ...\np_lr_w, p_decay_w, p_lr_b, p_"
+      "decay_b, ...\nc_group_,c_bias_term_,c_num_output_,c_kernel_w_,c_kernel_h_,c_stride_w_,c_stride_h_, ...\nc_f_type"
+      "_w,c_f_value_w,c_f_min_w,c_f_max_w,c_f_mean_w,c_f_std_w,c_f_variance_norm_w, ...\nc_f_type_b,c_f_value_b,c_f_min"
+      "_b,c_f_max_b,c_f_mean_b,c_f_std_b,c_f_variance_norm_b)\n\n\ncoder.extrinsic('sprintf');\ncoder.extrinsic('fprint"
+      "f');\ncoder.extrinsic('fopen');\ncoder.extrinsic('fclose');\n\ns = @(x,fmt) sprintf(fmt,x);\n\nstr = [ ...\n'\\n"
+      "layer {\\n', ...\n'  name: \"' s(name_ , '%s')  '\"\\n', ...\n'  type: \"Convolution\"\\n', ...\n'  bottom: \"' "
+      "s(bottom , '%s')  '\"\\n', ...\n'  top: \"' s(name_ , '%s')  '\"\\n', ...\n'  loss_weight: ' s(loss_weight , '%."
+      "1f')  '\\n', ...\n   s(misc_ , '%s'), ... % additional layer parameters entered by user\n'  param { lr_mult: ' s"
+      "(p_lr_w , '%i')  ' decay_mult: ' s(p_decay_w , '%i')  ' }  # learning rate and decay multipliers for the filters"
+      "\\n', ...\n'  param { lr_mult: ' s(p_lr_b , '%i')  ' decay_mult: ' s(p_decay_b , '%i')  ' } # learning rate and "
+      "decay multipliers for the biases\\n', ...\n'  convolution_param {\\n', ...\n'    group: ' s(c_group_ , '%i')  ' "
+      "         # The group size for group conv\\n', ...\n'    bias_term: ' s(c_bias_term_ , '%s')  '      # whether to"
+      " use bias terms(true,false)\\n', ...\n'    num_output: ' s(c_num_output_ , '%i')  '     # The number of outputs "
+      "for the layer\\n', ...\n'    kernel_w: ' s(c_kernel_w_ , '%i')  '       # The kernel width\\n', ...\n'    kernel"
+      "_h: ' s(c_kernel_h_ , '%i')  '       # The kernel height\\n', ...\n'    stride_w: ' s(c_stride_w_ , '%i')  '    "
+      "   # The stride width\\n', ...\n'    stride_h: ' s(c_stride_h_ , '%i')  '       # The stride height\\n', ...\n' "
+      "   weight_filler {\\n', ...\n'      type: \"' s(c_f_type_w , '%s')  '\"       # Filler type\\n', ...\n'      val"
+      "ue: ' s(c_f_value_w , '%f')  ' # the value in constant filler\\n', ...\n'      min: ' s(c_f_min_w , '%f')  ' # t"
+      "he min value in uniform filler\\n', ...\n'      max: ' s(c_f_max_w , '%f')  ' # the max value in uniform filler\\"
+      "n', ...\n'      mean: ' s(c_f_mean_w , '%f')  ' # the mean value in Gaussian filler\\n', ...\n'      std: ' s(c_"
+      "f_std_w , '%f')  ' # the std value in Gaussian filler\\n', ...\n'      variance_norm: ' s(c_f_variance_norm_w , "
+      "'%s')  ' # Normalize the filler variance by fan_in, fan_out, or their average.\\n', ...\n'    }\\n', ...  \n'   "
+      " bias_filler {\\n', ...\n'      type: \"' s(c_f_type_b , '%s' )  '\"       # Filler type\\n', ...\n'      value:"
+      " ' s(c_f_value_b , '%f')  ' # the value in constant filler\\n', ...\n'      min: ' s(c_f_min_b , '%f')  ' # the "
+      "min value in uniform filler\\n', ...\n'      max: ' s(c_f_max_b , '%f')  ' # the max value in uniform filler\\n'"
+      ", ...\n'      mean:' s(c_f_mean_b , '%f')  ' # the mean value in Gaussian filler\\n', ...\n'      std: ' s(c_f_s"
+      "td_b , '%f')  ' # the std value in Gaussian filler\\n', ...\n'      variance_norm: ' s(c_f_variance_norm_b , '%s"
+      "')  ' # Normalize the filler variance by fan_in, fan_out, or their average.\\n', ...\n'    }\\n', ...  \n'  }\\n"
+      "', ...\n'}\\n\\n'];\n\nf=fopen(char([title' '.txt']),'w');\nfprintf(f,'%s',str);\nfclose(f);\n\ntop = title; \n\n"
+      "\n\n% \n%   Phase_ENUM = {'TRAIN','TEST'}; Use this for data layers only\n%   Engine_ENUM = {'DEFAULT','CAFFE','"
+      "CUDNN'}; \n%   Filler_ENUM = {'constant','gaussian','positive_unitball','uniform','xavier','msra','bilinear'};\n"
+      "%   Variance_Norm_ENUM = {'FAN_IN','FAN_OUT','AVERGAE'};\n%   \n%   name = 1; # the layer name\n%   type = 2; # "
+      "the layer type\n%   bottom = 3; # the name of each bottom blob\n%   top = 4; # the name of each top blob\n%   ph"
+      "ase = 10; # The train / test phase for computation.\n%   loss_weight = 5;# The amount of weight to assign each t"
+      "op blob in the objective. Each layer assigns a default value, usually of either 0 or 1, to each top blob.\n%   r"
+      "epeated ParamSpec param = 6;  # Specifies training parameters (multipliers on global learning constants,and the "
+      "name and other settings used for weight sharing).\n% \n%   \n%   constant: value,sparse\n%   uniform: min,max,sp"
+      "arse\n%   gaussian: mean,std,sparse\n%   positiveunitball:sparse\n%   xavier:variance_norm,sparse\n%   msra:vari"
+      "ance_norm,sparse\n%   bilinear: sparse\n% \n%  (...  \n% '    weight_filler {\\n', ...\n% '      type: \"%s\"   "
+      "    # Filler type\\n', ...\n% '      value: %f # the value in constant filler\\n', ...\n% '      min: %f # the m"
+      "in value in uniform filler\\n', ...\n% '      max: %f # the max value in uniform filler\\n', ...\n% '      mean:"
+      " %f # the mean value in Gaussian filler\\n', ...\n% '      std: %f # the std value in Gaussian filler\\n', ...\n"
+      "% '      sparse: %i\\n', ...\n% '      VarianceNorm: %s # Normalize the filler variance by fan_in, fan_out, or t"
+      "heir average.\\n', ...\n% '    }\\n', ...  \n% '    bias_filler {\\n', ...\n% '      type: \"%s\"       # Filler"
+      " type\\n', ...\n% '      value: %f # the value in constant filler\\n', ...\n% '      min: %f # the min value in "
+      "uniform filler\\n', ...\n% '      max: %f # the max value in uniform filler\\n', ...\n% '      mean: %f # the me"
+      "an value in Gaussian filler\\n', ...\n% '      std: %f # the std value in Gaussian filler\\n', ...\n% '      spa"
+      "rse: %i\\n', ...\n% '      VarianceNorm: %s # Normalize the filler variance by fan_in, fan_out, or their average"
+      ".\\n', ...\n% '    }\\n', ...  \n% \n%   );\n\n  \n  \n  "
       editorLayout	      "100 M4x1[10 5 700 500]"
     }
   }
   data {
     id			    22
-    ssIdNumber		    4
-    name		    "title"
+    ssIdNumber		    30
+    name		    "name_"
     linkNode		    [20 0 23]
     scope		    PARAMETER_DATA
-    paramIndexForInitFromWorkspace 5
-    machine		    1
-    props {
-      array {
-	size			"-1"
-      }
-      type {
-	method			SF_INHERITED_TYPE
-	primitive		SF_INT8_TYPE
-      }
-      complexity	      SF_COMPLEX_INHERITED
-      frame		      SF_FRAME_NO
-    }
-    dataType		    "Inherit: Same as Simulink"
-  }
-  data {
-    id			    23
-    ssIdNumber		    5
-    name		    "out"
-    linkNode		    [20 22 24]
-    scope		    OUTPUT_DATA
+    paramIndexForInitFromWorkspace 17
     machine		    1
     props {
       array {
@@ -2376,17 +2490,19 @@ Stateflow {
       type {
 	method			SF_INHERITED_TYPE
 	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
       }
       complexity	      SF_COMPLEX_INHERITED
-      frame		      SF_FRAME_NO
+      frame		      SF_FRAME_INHERITED
     }
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    24
+    id			    23
     ssIdNumber		    6
     name		    "bottom"
-    linkNode		    [20 23 25]
+    linkNode		    [20 22 24]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -2405,12 +2521,32 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
+    id			    24
+    ssIdNumber		    5
+    name		    "top"
+    linkNode		    [20 23 25]
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
     id			    25
     ssIdNumber		    7
-    name		    "numFilters"
+    name		    "loss_weight"
     linkNode		    [20 24 26]
     scope		    PARAMETER_DATA
-    paramIndexForInitFromWorkspace 3
+    paramIndexForInitFromWorkspace 15
     machine		    1
     props {
       array {
@@ -2430,10 +2566,10 @@ Stateflow {
   data {
     id			    26
     ssIdNumber		    10
-    name		    "kernelSize"
+    name		    "misc_"
     linkNode		    [20 25 27]
     scope		    PARAMETER_DATA
-    paramIndexForInitFromWorkspace 2
+    paramIndexForInitFromWorkspace 16
     machine		    1
     props {
       array {
@@ -2453,10 +2589,10 @@ Stateflow {
   data {
     id			    27
     ssIdNumber		    11
-    name		    "stride"
+    name		    "p_lr_w"
     linkNode		    [20 26 28]
     scope		    PARAMETER_DATA
-    paramIndexForInitFromWorkspace 4
+    paramIndexForInitFromWorkspace 21
     machine		    1
     props {
       array {
@@ -2476,10 +2612,10 @@ Stateflow {
   data {
     id			    28
     ssIdNumber		    12
-    name		    "weightFill"
+    name		    "p_decay_w"
     linkNode		    [20 27 29]
     scope		    PARAMETER_DATA
-    paramIndexForInitFromWorkspace 6
+    paramIndexForInitFromWorkspace 19
     machine		    1
     props {
       array {
@@ -2499,10 +2635,10 @@ Stateflow {
   data {
     id			    29
     ssIdNumber		    13
-    name		    "weightStd"
+    name		    "p_lr_b"
     linkNode		    [20 28 30]
     scope		    PARAMETER_DATA
-    paramIndexForInitFromWorkspace 7
+    paramIndexForInitFromWorkspace 20
     machine		    1
     props {
       array {
@@ -2522,9 +2658,10 @@ Stateflow {
   data {
     id			    30
     ssIdNumber		    14
-    name		    "biasFill"
+    name		    "p_decay_b"
     linkNode		    [20 29 31]
     scope		    PARAMETER_DATA
+    paramIndexForInitFromWorkspace 18
     machine		    1
     props {
       array {
@@ -2544,10 +2681,10 @@ Stateflow {
   data {
     id			    31
     ssIdNumber		    15
-    name		    "biasVal"
-    linkNode		    [20 30 0]
+    name		    "c_group_"
+    linkNode		    [20 30 32]
     scope		    PARAMETER_DATA
-    paramIndexForInitFromWorkspace 1
+    paramIndexForInitFromWorkspace 9
     machine		    1
     props {
       array {
@@ -2564,120 +2701,12 @@ Stateflow {
     }
     dataType		    "Inherit: Same as Simulink"
   }
-  junction {
+  data {
     id			    32
-    position		    [23.5747 49.5747 7]
-    chart		    20
-    linkNode		    [20 0 0]
-    subviewer		    20
-    ssIdNumber		    3
-    type		    CONNECTIVE_JUNCTION
-  }
-  transition {
-    id			    33
-    labelString		    "{eML_blk_kernel();}"
-    labelPosition	    [36.125 25.875 102.544 14.964]
-    fontSize		    12
-    src {
-      intersection	      [0 0 1 0 23.5747 14.625 0 0]
-    }
-    dst {
-      id		      32
-      intersection	      [1 0 -1 0 23.5747 42.5747 0 0]
-    }
-    midPoint		    [23.5747 24.9468]
-    chart		    20
-    linkNode		    [20 0 0]
-    dataLimits		    [21.175 25.975 14.625 42.575]
-    subviewer		    20
-    drawStyle		    SMART
-    slide {
-      sticky		      BOTH_STICK
-    }
-    executionOrder	    1
-    ssIdNumber		    2
-  }
-  instance {
-    id			    34
-    name		    "ConvLayer"
-    machine		    1
-    chart		    20
-  }
-  chart {
-    id			    35
-    name		    "PoolLayer"
-    windowPosition	    [522 381 200 423]
-    viewLimits		    [0 156.75 0 153.75]
-    screen		    [1 1 1920 1080 1.25]
-    treeNode		    [0 36 0 0]
-    firstTransition	    44
-    firstJunction	    43
-    viewObj		    35
-    visible		    1
-    machine		    1
-    toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
-    ssIdHighWaterMark	    15
-    decomposition	    CLUSTER_CHART
-    type		    EML_CHART
-    firstData		    37
-    chartFileNumber	    4
-    disableImplicitCasting  1
-    eml {
-      name		      "Pooling"
-    }
-  }
-  state {
-    id			    36
-    labelString		    "eML_blk_kernel()"
-    position		    [18 64.5 118 66]
-    fontSize		    12
-    chart		    35
-    treeNode		    [35 0 0 0]
-    superState		    SUBCHART
-    subviewer		    35
-    ssIdNumber		    1
-    type		    FUNC_STATE
-    decomposition	    CLUSTER_STATE
-    eml {
-      isEML		      1
-      script		      "function out  = Pooling(title, bottom, poolType, kernelSize,stride)\n\ncoder.extrinsic('sprintf')"
-      ";\ncoder.extrinsic('fprintf');\ncoder.extrinsic('fopen');\ncoder.extrinsic('fclose');\n\nstr = sprintf( ...\n'la"
-      "yer {\\n', ...\n'  name: \"%s\"\\n', ...\n'  type: \"Pooling\"\\n', ...\n'  bottom: \"%s\"\\n', ...\n'  top: \"%"
-      "s\"\\n', ...\n'  pooling_param {\\n', ...\n'    pool: %s\\n', ...\n'    kernel_size: %i # pool over a %iX%i regi"
-      "on\\n', ...\n'    stride: %i      # step %i pixels (in the bottom blob) between pooling regions\\n', ...\n'  }\\"
-      "n', ...\n'}\\n', ...\ntitle, bottom, title, poolType, kernelSize,kernelSize,kernelSize, stride,stride );\n\nf=fo"
-      "pen(char([title' '.txt']),'w');\nfprintf(f,'%s',str);\nfclose(f);\n\nout = title; \n\n"
-      editorLayout	      "100 M4x1[10 5 700 500]"
-    }
-  }
-  data {
-    id			    37
-    ssIdNumber		    4
-    name		    "title"
-    linkNode		    [35 0 38]
+    ssIdNumber		    16
+    name		    "c_bias_term_"
+    linkNode		    [20 31 33]
     scope		    PARAMETER_DATA
-    paramIndexForInitFromWorkspace 3
-    machine		    1
-    props {
-      array {
-	size			"-1"
-      }
-      type {
-	method			SF_INHERITED_TYPE
-	primitive		SF_INT8_TYPE
-      }
-      complexity	      SF_COMPLEX_INHERITED
-    }
-    dataType		    "Inherit: Same as Simulink"
-  }
-  data {
-    id			    38
-    ssIdNumber		    5
-    name		    "out"
-    linkNode		    [35 37 39]
-    scope		    OUTPUT_DATA
     machine		    1
     props {
       array {
@@ -2686,18 +2715,159 @@ Stateflow {
       type {
 	method			SF_INHERITED_TYPE
 	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
       }
       complexity	      SF_COMPLEX_INHERITED
-      frame		      SF_FRAME_NO
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    33
+    ssIdNumber		    17
+    name		    "c_num_output_"
+    linkNode		    [20 32 34]
+    scope		    PARAMETER_DATA
+    paramIndexForInitFromWorkspace 12
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    34
+    ssIdNumber		    18
+    name		    "c_kernel_w_"
+    linkNode		    [20 33 35]
+    scope		    PARAMETER_DATA
+    paramIndexForInitFromWorkspace 11
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    35
+    ssIdNumber		    19
+    name		    "c_kernel_h_"
+    linkNode		    [20 34 36]
+    scope		    PARAMETER_DATA
+    paramIndexForInitFromWorkspace 10
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    36
+    ssIdNumber		    20
+    name		    "c_stride_w_"
+    linkNode		    [20 35 37]
+    scope		    PARAMETER_DATA
+    paramIndexForInitFromWorkspace 14
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    37
+    ssIdNumber		    21
+    name		    "c_stride_h_"
+    linkNode		    [20 36 38]
+    scope		    PARAMETER_DATA
+    paramIndexForInitFromWorkspace 13
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    38
+    ssIdNumber		    22
+    name		    "c_f_type_w"
+    linkNode		    [20 37 39]
+    scope		    PARAMETER_DATA
+    paramIndexForInitFromWorkspace 6
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
     }
     dataType		    "Inherit: Same as Simulink"
   }
   data {
     id			    39
-    ssIdNumber		    6
-    name		    "bottom"
-    linkNode		    [35 38 40]
-    scope		    INPUT_DATA
+    ssIdNumber		    23
+    name		    "c_f_value_w"
+    linkNode		    [20 38 40]
+    scope		    PARAMETER_DATA
+    paramIndexForInitFromWorkspace 7
     machine		    1
     props {
       array {
@@ -2716,9 +2886,32 @@ Stateflow {
   }
   data {
     id			    40
-    ssIdNumber		    7
-    name		    "poolType"
-    linkNode		    [35 39 41]
+    ssIdNumber		    24
+    name		    "c_f_min_w"
+    linkNode		    [20 39 41]
+    scope		    PARAMETER_DATA
+    paramIndexForInitFromWorkspace 3
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    41
+    ssIdNumber		    25
+    name		    "c_f_max_w"
+    linkNode		    [20 40 42]
     scope		    PARAMETER_DATA
     paramIndexForInitFromWorkspace 1
     machine		    1
@@ -2738,10 +2931,407 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    41
+    id			    42
+    ssIdNumber		    26
+    name		    "c_f_mean_w"
+    linkNode		    [20 41 43]
+    scope		    PARAMETER_DATA
+    paramIndexForInitFromWorkspace 2
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    43
+    ssIdNumber		    27
+    name		    "c_f_std_w"
+    linkNode		    [20 42 44]
+    scope		    PARAMETER_DATA
+    paramIndexForInitFromWorkspace 4
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    44
+    ssIdNumber		    28
+    name		    "c_f_variance_norm_w"
+    linkNode		    [20 43 45]
+    scope		    PARAMETER_DATA
+    paramIndexForInitFromWorkspace 8
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    45
+    ssIdNumber		    29
+    name		    "c_f_type_b"
+    linkNode		    [20 44 46]
+    scope		    PARAMETER_DATA
+    paramIndexForInitFromWorkspace 5
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    46
+    ssIdNumber		    31
+    name		    "c_f_value_b"
+    linkNode		    [20 45 47]
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    47
+    ssIdNumber		    32
+    name		    "c_f_min_b"
+    linkNode		    [20 46 48]
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    48
+    ssIdNumber		    33
+    name		    "c_f_max_b"
+    linkNode		    [20 47 49]
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    49
+    ssIdNumber		    34
+    name		    "c_f_mean_b"
+    linkNode		    [20 48 50]
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    50
+    ssIdNumber		    35
+    name		    "c_f_std_b"
+    linkNode		    [20 49 51]
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    51
+    ssIdNumber		    36
+    name		    "c_f_variance_norm_b"
+    linkNode		    [20 50 0]
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  junction {
+    id			    52
+    position		    [23.5747 49.5747 7]
+    chart		    20
+    linkNode		    [20 0 0]
+    subviewer		    20
+    ssIdNumber		    3
+    type		    CONNECTIVE_JUNCTION
+  }
+  transition {
+    id			    53
+    labelString		    "{eML_blk_kernel();}"
+    labelPosition	    [36.125 25.875 102.544 14.964]
+    fontSize		    12
+    src {
+      intersection	      [0 0 1 0 23.5747 14.625 0 0]
+    }
+    dst {
+      id		      52
+      intersection	      [1 0 -1 0 23.5747 42.5747 0 0]
+    }
+    midPoint		    [23.5747 24.9468]
+    chart		    20
+    linkNode		    [20 0 0]
+    dataLimits		    [21.175 25.975 14.625 42.575]
+    subviewer		    20
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    2
+  }
+  instance {
+    id			    54
+    name		    "ConvLayer"
+    machine		    1
+    chart		    20
+  }
+  chart {
+    id			    55
+    name		    "PoolLayer"
+    windowPosition	    [522 381 200 423]
+    viewLimits		    [0 156.75 0 153.75]
+    screen		    [1 1 1920 1080 1.25]
+    treeNode		    [0 56 0 0]
+    firstTransition	    64
+    firstJunction	    63
+    viewObj		    55
+    visible		    1
+    machine		    1
+    toolbarMode		    LIBRARY_TOOLBAR
+    subviewS {
+    }
+    ssIdHighWaterMark	    15
+    decomposition	    CLUSTER_CHART
+    type		    EML_CHART
+    firstData		    57
+    chartFileNumber	    4
+    disableImplicitCasting  1
+    eml {
+      name		      "Pooling"
+    }
+  }
+  state {
+    id			    56
+    labelString		    "eML_blk_kernel()"
+    position		    [18 64.5 118 66]
+    fontSize		    12
+    chart		    55
+    treeNode		    [55 0 0 0]
+    superState		    SUBCHART
+    subviewer		    55
+    ssIdNumber		    1
+    type		    FUNC_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+      isEML		      1
+      script		      "function top  = Pooling(title, bottom, poolType, kernelSize,stride)\n\ncoder.extrinsic('sprintf')"
+      ";\ncoder.extrinsic('fprintf');\ncoder.extrinsic('fopen');\ncoder.extrinsic('fclose');\n\nstr = sprintf( ...\n'la"
+      "yer {\\n', ...\n'  name: \"%s\"\\n', ...\n'  type: \"Pooling\"\\n', ...\n'  bottom: \"%s\"\\n', ...\n'  top: \"%"
+      "s\"\\n', ...\n'  pooling_param {\\n', ...\n'    pool: %s\\n', ...\n'    kernel_size: %i # pool over a %iX%i regi"
+      "on\\n', ...\n'    stride: %i      # step %i pixels (in the bottom blob) between pooling regions\\n', ...\n'  }\\"
+      "n', ...\n'}\\n', ...\ntitle, bottom, title, poolType, kernelSize,kernelSize,kernelSize, stride,stride );\n\nf=fo"
+      "pen(char([title' '.txt']),'w');\nfprintf(f,'%s',str);\nfclose(f);\n\ntop = title; \n\n"
+      editorLayout	      "100 M4x1[10 5 700 500]"
+    }
+  }
+  data {
+    id			    57
+    ssIdNumber		    4
+    name		    "title"
+    linkNode		    [55 0 58]
+    scope		    PARAMETER_DATA
+    paramIndexForInitFromWorkspace 3
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_INT8_TYPE
+      }
+      complexity	      SF_COMPLEX_INHERITED
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    58
+    ssIdNumber		    5
+    name		    "top"
+    linkNode		    [55 57 59]
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    59
+    ssIdNumber		    6
+    name		    "bottom"
+    linkNode		    [55 58 60]
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    60
+    ssIdNumber		    7
+    name		    "poolType"
+    linkNode		    [55 59 61]
+    scope		    PARAMETER_DATA
+    paramIndexForInitFromWorkspace 1
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    61
     ssIdNumber		    10
     name		    "kernelSize"
-    linkNode		    [35 40 42]
+    linkNode		    [55 60 62]
     scope		    PARAMETER_DATA
     machine		    1
     props {
@@ -2760,10 +3350,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    42
+    id			    62
     ssIdNumber		    11
     name		    "stride"
-    linkNode		    [35 41 0]
+    linkNode		    [55 61 0]
     scope		    PARAMETER_DATA
     paramIndexForInitFromWorkspace 2
     machine		    1
@@ -2783,16 +3373,16 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   junction {
-    id			    43
+    id			    63
     position		    [23.5747 49.5747 7]
-    chart		    35
-    linkNode		    [35 0 0]
-    subviewer		    35
+    chart		    55
+    linkNode		    [55 0 0]
+    subviewer		    55
     ssIdNumber		    3
     type		    CONNECTIVE_JUNCTION
   }
   transition {
-    id			    44
+    id			    64
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [36.125 25.875 102.544 14.964]
     fontSize		    12
@@ -2800,14 +3390,14 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      43
+      id		      63
       intersection	      [1 0 -1 0 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
-    chart		    35
-    linkNode		    [35 0 0]
+    chart		    55
+    linkNode		    [55 0 0]
     dataLimits		    [21.175 25.975 14.625 42.575]
-    subviewer		    35
+    subviewer		    55
     drawStyle		    SMART
     slide {
       sticky		      BOTH_STICK
@@ -2816,21 +3406,21 @@ Stateflow {
     ssIdNumber		    2
   }
   instance {
-    id			    45
+    id			    65
     name		    "PoolLayer"
     machine		    1
-    chart		    35
+    chart		    55
   }
   chart {
-    id			    46
+    id			    66
     name		    "ReLULayer"
     windowPosition	    [541 381 200 423]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1920 1080 1.25]
-    treeNode		    [0 47 0 0]
-    firstTransition	    51
-    firstJunction	    50
-    viewObj		    46
+    treeNode		    [0 67 0 0]
+    firstTransition	    71
+    firstJunction	    70
+    viewObj		    66
     visible		    1
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
@@ -2839,7 +3429,7 @@ Stateflow {
     ssIdHighWaterMark	    15
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
-    firstData		    48
+    firstData		    68
     chartFileNumber	    5
     disableImplicitCasting  1
     eml {
@@ -2847,31 +3437,31 @@ Stateflow {
     }
   }
   state {
-    id			    47
+    id			    67
     labelString		    "eML_blk_kernel()"
     position		    [18 64.5 118 66]
     fontSize		    12
-    chart		    46
-    treeNode		    [46 0 0 0]
+    chart		    66
+    treeNode		    [66 0 0 0]
     superState		    SUBCHART
-    subviewer		    46
+    subviewer		    66
     ssIdNumber		    1
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
     eml {
       isEML		      1
-      script		      "function out  = ReLU(bottom)\n\ncoder.extrinsic('sprintf');\ncoder.extrinsic('fprintf');\ncoder.e"
+      script		      "function top  = ReLU(bottom)\n\ncoder.extrinsic('sprintf');\ncoder.extrinsic('fprintf');\ncoder.e"
       "xtrinsic('fopen');\ncoder.extrinsic('fclose');\n\nstr = sprintf( ...\n'layer {\\n', ...\n'  name: \"%s\"\\n', .."
       ".\n'  type: \"ReLU\"\\n', ...\n'  bottom: \"%s\"\\n', ...\n'  top: \"%s\"\\n', ...\n'}\\n', ...\nbottom, bottom,"
-      " bottom);\n\nf=fopen(char([bottom' '.txt']),'w');\nfprintf(f,'%s',str);\nfclose(f);\n\nout = bottom; \n"
+      " bottom);\n\nf=fopen(char([bottom' '.txt']),'w');\nfprintf(f,'%s',str);\nfclose(f);\n\ntop = bottom; \n"
       editorLayout	      "100 M4x1[10 5 700 500]"
     }
   }
   data {
-    id			    48
+    id			    68
     ssIdNumber		    4
     name		    "bottom"
-    linkNode		    [46 0 49]
+    linkNode		    [66 0 69]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -2887,10 +3477,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    49
+    id			    69
     ssIdNumber		    5
-    name		    "out"
-    linkNode		    [46 48 0]
+    name		    "top"
+    linkNode		    [66 68 0]
     scope		    OUTPUT_DATA
     machine		    1
     props {
@@ -2907,16 +3497,16 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   junction {
-    id			    50
+    id			    70
     position		    [23.5747 49.5747 7]
-    chart		    46
-    linkNode		    [46 0 0]
-    subviewer		    46
+    chart		    66
+    linkNode		    [66 0 0]
+    subviewer		    66
     ssIdNumber		    3
     type		    CONNECTIVE_JUNCTION
   }
   transition {
-    id			    51
+    id			    71
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [36.125 25.875 102.544 14.964]
     fontSize		    12
@@ -2924,14 +3514,14 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      50
+      id		      70
       intersection	      [1 0 -1 0 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
-    chart		    46
-    linkNode		    [46 0 0]
+    chart		    66
+    linkNode		    [66 0 0]
     dataLimits		    [21.175 25.975 14.625 42.575]
-    subviewer		    46
+    subviewer		    66
     drawStyle		    SMART
     slide {
       sticky		      BOTH_STICK
@@ -2940,21 +3530,21 @@ Stateflow {
     ssIdNumber		    2
   }
   instance {
-    id			    52
+    id			    72
     name		    "ReLULayer"
     machine		    1
-    chart		    46
+    chart		    66
   }
   chart {
-    id			    53
+    id			    73
     name		    "NeuronLayer"
     windowPosition	    [541 381 200 423]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1920 1080 1.25]
-    treeNode		    [0 54 0 0]
-    firstTransition	    60
-    firstJunction	    59
-    viewObj		    53
+    treeNode		    [0 74 0 0]
+    firstTransition	    80
+    firstJunction	    79
+    viewObj		    73
     visible		    1
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
@@ -2963,7 +3553,7 @@ Stateflow {
     ssIdHighWaterMark	    15
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
-    firstData		    55
+    firstData		    75
     chartFileNumber	    6
     disableImplicitCasting  1
     eml {
@@ -2971,32 +3561,32 @@ Stateflow {
     }
   }
   state {
-    id			    54
+    id			    74
     labelString		    "eML_blk_kernel()"
     position		    [18 64.5 118 66]
     fontSize		    12
-    chart		    53
-    treeNode		    [53 0 0 0]
+    chart		    73
+    treeNode		    [73 0 0 0]
     superState		    SUBCHART
-    subviewer		    53
+    subviewer		    73
     ssIdNumber		    1
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
     eml {
       isEML		      1
-      script		      "function out  = Neuron(title, bottom, typeOf)\n\ncoder.extrinsic('sprintf');\ncoder.extrinsic('fp"
+      script		      "function top  = Neuron(title, bottom, typeOf)\n\ncoder.extrinsic('sprintf');\ncoder.extrinsic('fp"
       "rintf');\ncoder.extrinsic('fopen');\ncoder.extrinsic('fclose');\n\nstr = sprintf( ...\n'layer {\\n', ...\n'  nam"
       "e: \"%s\"\\n', ...\n'  bottom: \"%s\"\\n', ...\n'  top: \"%s\"\\n', ...\n'  type: \"%s\"\\n', ...\n'}\\n', ...\n"
-      "title, bottom, title, typeOf);\n\nf=fopen(char([title' '.txt']),'w');\nfprintf(f,'%s',str);\nfclose(f);\n\nout ="
+      "title, bottom, title, typeOf);\n\nf=fopen(char([title' '.txt']),'w');\nfprintf(f,'%s',str);\nfclose(f);\n\ntop ="
       " title; \n\n"
       editorLayout	      "100 M4x1[10 5 700 500]"
     }
   }
   data {
-    id			    55
+    id			    75
     ssIdNumber		    4
     name		    "title"
-    linkNode		    [53 0 56]
+    linkNode		    [73 0 76]
     scope		    PARAMETER_DATA
     machine		    1
     props {
@@ -3012,10 +3602,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    56
+    id			    76
     ssIdNumber		    5
-    name		    "out"
-    linkNode		    [53 55 57]
+    name		    "top"
+    linkNode		    [73 75 77]
     scope		    OUTPUT_DATA
     machine		    1
     props {
@@ -3032,10 +3622,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    57
+    id			    77
     ssIdNumber		    6
     name		    "bottom"
-    linkNode		    [53 56 58]
+    linkNode		    [73 76 78]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -3054,10 +3644,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    58
+    id			    78
     ssIdNumber		    10
     name		    "typeOf"
-    linkNode		    [53 57 0]
+    linkNode		    [73 77 0]
     scope		    PARAMETER_DATA
     paramIndexForInitFromWorkspace 1
     machine		    1
@@ -3078,16 +3668,16 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   junction {
-    id			    59
+    id			    79
     position		    [23.5747 49.5747 7]
-    chart		    53
-    linkNode		    [53 0 0]
-    subviewer		    53
+    chart		    73
+    linkNode		    [73 0 0]
+    subviewer		    73
     ssIdNumber		    3
     type		    CONNECTIVE_JUNCTION
   }
   transition {
-    id			    60
+    id			    80
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [36.125 25.875 102.544 14.964]
     fontSize		    12
@@ -3095,14 +3685,14 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      59
+      id		      79
       intersection	      [1 0 -1 0 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
-    chart		    53
-    linkNode		    [53 0 0]
+    chart		    73
+    linkNode		    [73 0 0]
     dataLimits		    [21.175 25.975 14.625 42.575]
-    subviewer		    53
+    subviewer		    73
     drawStyle		    SMART
     slide {
       sticky		      BOTH_STICK
@@ -3111,13 +3701,13 @@ Stateflow {
     ssIdNumber		    2
   }
   instance {
-    id			    61
+    id			    81
     name		    "NeuronLayer"
     machine		    1
-    chart		    53
+    chart		    73
   }
   target {
-    id			    62
+    id			    82
     name		    "sfun"
     description		    "Default Simulink S-Function Target."
     machine		    1
