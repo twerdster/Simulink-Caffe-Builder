@@ -1,75 +1,72 @@
 # Simulink-Caffe-Builder
 
 [![MATLAB / Simulink](https://img.shields.io/badge/MATLAB-Simulink-0076A8)](CaffeLibrary.mdl)
-[![Output: Caffe prototxt](https://img.shields.io/badge/output-Caffe%20prototxt-555555)](https://github.com/BVLC/caffe)
-[![Status: historical (2015)](https://img.shields.io/badge/status-historical%20%282015%29-lightgrey)](#later-work)
+[![Output: layer text](https://img.shields.io/badge/output-per--layer%20Caffe%20text-555555)](#original-export-procedure)
+[![Historical experiment](https://img.shields.io/badge/status-historical%20%282015%29-lightgrey)](#validation-and-limitations)
 
-Uses Simulink (Matlab) as a visual builder to generate caffe prototxt files.
+Simulink-Caffe-Builder is a 2015 experiment in editing Caffe network definitions as connected
+Simulink blocks. MATLAB functions embedded in the blocks format Caffe layer definitions and
+are designed to write text files during model simulation; this review did not simulate them. The aim was to reduce manual editing of network
+configuration files; the Simulink model does not execute the corresponding neural network.
 
-![Explanatory illustration: Caffe layer blocks wired in Simulink, simulated to write one text file per layer, then collated into a prototxt file](docs/images/simulink-to-prototxt.svg)
+![Schematic of Simulink blocks producing per-layer text for collation into prototxt](docs/images/simulink-to-prototxt.svg)
 
-*Explanatory illustration of the workflow in the instructions below. It is not a screenshot of the
-Simulink library, and the block names are generic examples.*
+*Source-level workflow schematic, not a screenshot. The final collation script is not included in the repository.*
 
-> **Repository contents:** the public repository contains `CaffeLibrary.mdl`, the example model
-> `Example_3Stage.mdl` and this README. The `collateFiles.m` script described under Instructions is
-> not in the repository. This 2015 experiment has not been retested with current MATLAB releases.
+## Repository contents
 
-### Overview
-Building different network architectures in Caffe by hand constructing  
-prototxt files is somewhat slow and prone to copy-paste errors.   
-Given the wide-spread adoption of Caffe and its very modular layer structure  
-it seems reasonable that there should be a visual builder for such files.  
-In fact it would be great if there was an integrated visual builder and trainer  
-in matlab or Python and each individual layer could be inspected and visualized.  
+- [CaffeLibrary.mdl](CaffeLibrary.mdl): block library with data source, convolution, pooling,
+  `NeuronLayer`, `ReLULayer` and loss blocks. Embedded MATLAB functions write layer text to `.txt` files.
+- [Example_3Stage.mdl](Example_3Stage.mdl): an example graph that connects these blocks.
 
-Towards this goal we have chosen Simulink as a pseudo visual builder.  
-It appears that this is not optimal but is sufficient as a first attempt  
-towards the goal of a visual prototxt builder.  
+The models contain configuration generation logic, not Caffe weights, a numerical inference
+engine or a training loop. Running a Caffe model requires a separate Caffe installation and
+compatible data and configuration files.
 
-### Instructions
-* Open simulink in Matlab by typing 'simulink' at the prompt.  
-* Use File\Open to open the CaffeLibrary.mdl file.  
-* This will bring up the different layers and input types in the CaffeLibrary.  
-* Create a new model by going to File\New.  
-* In the new model you will need to change the simulation parameters by going to
-Simulation\ConfigurationParameters.   
-* Change Stop Time to 1. Change Solver Options:Type to Fixed-step. Change Solver to discrete.
-Press apply.  
-* Now drag and drop items from the CaffeLibrary into your new model and connect
-them up in the shape of a network architecture.  
-* Once you have connected everything you can press the simulate button.   
+## Original export procedure
 
-If everything works you will see multiple txt files. Currently you need to run the script 
-collateFiles.m in matlab and it will collect all the txt files and append
-them into one prototxt file. In the future this will happen automatically.  
+This procedure is incomplete and was not executed for the documentation review.
 
-### Todo
-- Create block masks so that input ports can be chosen with drop-down boxes.
-- Create a final collation function to automatically spit out the prototxt file.
-- Add more layers
-- Create known network models (like AlexNet, GoogLeNet, etc) and add them
-as library blocks. 
-- more ...
+MATLAB and Simulink are required. The saved models use MATLAB Function blocks; a compatible
+release must support their embedded code and model format. No current MATLAB release has been
+validated for this repository.
 
-### Note
-If there is a better graphical builder tool for creating directed graphs
-by using drag-and-drop and executing scripts in each graph node then I would be
-happy to hear about it. For example a python framework or javascript or something
-which can be made to be easily customizable and cross platform without restriction
-to using proprietary software.
-Also, this is the first time I have used Simulink for anything so its quite likely
-the method is not particularly optimal.
+1. Copy the models into a fresh writable directory with no other `.txt` files. Start MATLAB,
+   change to that directory and run `simulink`.
+2. Open `CaffeLibrary.mdl` and `Example_3Stage.mdl` to inspect the library and example.
+3. For a new model, set the stop time to `1`, the solver type to **Fixed-step**, and the solver
+   to **discrete** in Simulation → Configuration Parameters.
+4. Copy blocks from the library, edit their parameters and connect their inputs and outputs.
+5. Simulate the model to invoke the embedded text-writing functions.
 
-### Contribute
-Feel free to contribute to this repo. For example more layers will be welcome.
-Or even better - an automatic parser that converts caffe's proto file into Simulink
-blocks or at least into .m files that can then be used inside the Simulink blocks.
+The original instructions then call `collateFiles.m` to combine the layer files into one
+`.prototxt` network definition. **That script is absent from the tracked repository.** The
+end-to-end export procedure is therefore incomplete. Any manual replacement must preserve graph
+ordering, layer names and Caffe blob connections; concatenating arbitrary files is insufficient.
 
-### Later work
+## Validation and limitations
 
-A node-based builder of the kind asked for in the note above was later used in Blender:
-[Caffe-GUI-Tool](https://github.com/twerdster/caffe-gui-tool), a fork of
-[H. Tomkins' original](https://github.com/hctomkins/caffe-gui-tool) extended by Aaron Wetzler and
-Rom Hershkovitz. Its maintained continuation for current Blender releases is
-[Blender Neural Composer](https://github.com/twerdster/blender-neural-composer).
+Review date: 2026-11-12.
+
+This documentation revision inspected both `.mdl` files and the embedded text-generation code.
+It did not load or simulate them in MATLAB, parse their output with Caffe, or execute a network.
+There is no automated test suite or saved validation log.
+
+Use an empty working directory: layer writers open same-named text files for replacement.
+
+The library covers a subset of historical Caffe layers. The original work list included more
+layers, further parameter-mask controls and automatic collation; these remain proposed work rather than verified
+features. In the convolution block, the embedded signature uses `name_` and additional parameters
+while its writer refers to `title`; the mask and embedded code need reconciliation before this
+can be treated as a functioning exporter.
+
+## Related work and attribution
+
+The later [Caffe-GUI-Tool](https://github.com/twerdster/caffe-gui-tool) used Blender nodes for
+configuration generation. It is a fork of [H. Tomkins' project](https://github.com/hctomkins/caffe-gui-tool)
+with extensions by Aaron Wetzler and Rom Hershkovitz. Its continuation intended for current Blender releases
+is [Blender Neural Composer](https://github.com/twerdster/blender-neural-composer); consult that
+repository's compatibility and validation records separately.
+
+The original model files are unchanged. This repository has no standalone software license;
+these documentation changes do not assign one.
